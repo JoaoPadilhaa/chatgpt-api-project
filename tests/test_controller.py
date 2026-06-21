@@ -32,3 +32,11 @@ def test_controller_retorna_mensagem_amigavel_em_erro() -> None:
 
     assert resposta == "Não foi possível obter resposta da OpenAI."
 
+
+def test_controller_exibe_detalhes_quando_debug_ativo() -> None:
+    controller = ChatController(FakeService(deve_falhar=True), debug=True)
+
+    resposta = controller.processar("Explique Python")
+
+    assert "Não foi possível obter resposta da OpenAI." in resposta
+    assert "falha" in resposta

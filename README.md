@@ -60,7 +60,13 @@ $env:OPENAI_API_KEY="sua-chave-aqui"
 Opcionalmente, configure outro modelo:
 
 ```powershell
-$env:OPENAI_MODEL="gpt-5.5"
+$env:OPENAI_MODEL="gpt-5.4-mini"
+```
+
+Para ver detalhes técnicos caso a API retorne erro:
+
+```powershell
+$env:CHATGPT_DEBUG="1"
 ```
 
 Execute a aplicação:
@@ -101,7 +107,8 @@ para simular as respostas e erros da integração externa.
 | Variável | Obrigatória | Descrição |
 | --- | --- | --- |
 | `OPENAI_API_KEY` | Sim | Chave da API da OpenAI |
-| `OPENAI_MODEL` | Não | Modelo usado pela aplicação. Padrão: `gpt-5.5` |
+| `OPENAI_MODEL` | Não | Modelo usado pela aplicação. Padrão: `gpt-5.4-mini` |
+| `CHATGPT_DEBUG` | Não | Mostra detalhes técnicos de erro quando definido como `1` |
 
 ## GitHub Actions
 
@@ -113,4 +120,3 @@ O workflow `.github/workflows/ci.yml` executa automaticamente:
 4. Execução do `pytest`
 
 Se algum teste falhar, o pipeline também falha.
-

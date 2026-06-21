@@ -22,7 +22,7 @@ class OpenAIChatService:
                 input=prompt,
             )
         except Exception as exc:
-            raise OpenAIServiceError("Falha ao consultar a OpenAI.") from exc
+            raise OpenAIServiceError(f"Falha ao consultar a OpenAI: {exc}") from exc
 
         texto = self._extrair_texto(response)
         if not texto:

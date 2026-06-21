@@ -3,8 +3,9 @@ from chatgpt_app.validators import validar_prompt
 
 
 class ChatController:
-    def __init__(self, service: ChatService) -> None:
+    def __init__(self, service: ChatService, debug: bool = False) -> None:
         self._service = service
+        self._debug = debug
 
     def processar(self, prompt: str) -> str:
         if not validar_prompt(prompt):
@@ -12,6 +13,7 @@ class ChatController:
 
         try:
             return self._service.obter_resposta(prompt.strip())
-        except OpenAIServiceError:
+        except OpenAIServiceError as exc:
+            if self._debug:
+                return f"Não foi possível obter resposta da OpenAI. Detalhes: {exc}"
             return "Não foi possível obter resposta da OpenAI."
-

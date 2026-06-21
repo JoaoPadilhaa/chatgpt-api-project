@@ -9,7 +9,7 @@ def criar_controller() -> ChatController:
         raise RuntimeError("Configure a variável de ambiente OPENAI_API_KEY.")
 
     service = OpenAIChatService(api_key=config.api_key, model=config.model)
-    return ChatController(service)
+    return ChatController(service, debug=config.debug)
 
 
 def executar() -> None:
